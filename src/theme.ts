@@ -2,26 +2,26 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#4299E1',
-      light: '#63B3ED',
-      dark: '#3182CE',
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0',
     },
     secondary: {
-      main: '#F6AD55',
-      light: '#FBD38D',
-      dark: '#ED8936',
+      main: '#0d47a1',
+      light: '#2962ff',
+      dark: '#002171',
     },
     background: {
-      default: '#0F172A',
-      paper: 'rgba(26, 54, 93, 0.7)',
+      default: '#ffffff',
+      paper: 'rgba(236, 244, 253, 0.7)',
     },
     text: {
-      primary: '#E2E8F0',
-      secondary: '#CBD5E0',
+      primary: '#0d47a1',
+      secondary: '#1976d2',
     },
-    divider: 'rgba(226, 232, 240, 0.12)',
+    divider: 'rgba(13, 71, 161, 0.12)',
   },
   typography: {
     fontFamily: '"Winky Sans", "Poppins", sans-serif',
@@ -31,7 +31,7 @@ const theme = createTheme({
       fontSize: '2.5rem',
       lineHeight: 1.2,
       letterSpacing: '0.05em',
-      background: 'linear-gradient(45deg, #4299E1 30%, #F6AD55 90%)',
+      background: 'linear-gradient(45deg, #1976d2 30%, #0d47a1 90%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       textTransform: 'uppercase',
@@ -141,13 +141,13 @@ const theme = createTheme({
           '& .MuiOutlinedInput-root': {
             borderRadius: '4px',
             '& fieldset': {
-              borderColor: 'rgba(226, 232, 240, 0.1)',
+              borderColor: 'rgba(13, 71, 161, 0.1)',
             },
             '&:hover fieldset': {
-              borderColor: '#4299E1',
+              borderColor: '#1976d2',
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#4299E1',
+              borderColor: '#1976d2',
             },
           },
         },
@@ -156,7 +156,7 @@ const theme = createTheme({
     MuiDivider: {
       styleOverrides: {
         root: {
-          borderColor: 'rgba(226, 232, 240, 0.1)',
+          borderColor: 'rgba(13, 71, 161, 0.1)',
         },
       },
     },

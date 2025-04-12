@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import { Box } from '@mui/material';
 import 'react-quill/dist/quill.snow.css';
@@ -10,6 +10,11 @@ interface QuillEditorProps {
 
 const QuillEditor = ({ value, onChange }: QuillEditorProps) => {
   const quillRef = useRef<ReactQuill>(null);
+
+  // Debug log when value changes
+  useEffect(() => {
+    console.log('QuillEditor value:', value);
+  }, [value]);
 
   const imageHandler = () => {
     const input = document.createElement('input');
@@ -53,26 +58,17 @@ const QuillEditor = ({ value, onChange }: QuillEditorProps) => {
         image: imageHandler
       }
     },
-    keyboard: {
-      bindings: {
-        space: {
-          key: 32,
-          handler: function(range: { index: number, length: number }, context: any) {
-            return false;
-          }
-        }
-      }
-    }
+    
   }), []);
 
   return (
     <Box sx={{
       '& .ql-container': {
-        borderColor: 'rgba(255, 255, 255, 0.1)',
+        borderColor: 'rgba(13, 71, 161, 0.1)',
         borderRadius: '8px',
         fontFamily: 'Inter, system-ui, sans-serif',
-        backgroundColor: 'rgba(38, 70, 83, 0.3)',
-        color: 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: 'rgba(236, 244, 253, 0.5)',
+        color: '#0d47a1',
         backdropFilter: 'blur(10px)',
         '&.ql-rtl': {
           direction: 'rtl',
@@ -80,52 +76,52 @@ const QuillEditor = ({ value, onChange }: QuillEditorProps) => {
         },
       },
       '& .ql-toolbar': {
-        borderColor: 'rgba(255, 255, 255, 0.1)',
+        borderColor: 'rgba(13, 71, 161, 0.1)',
         borderRadius: '8px',
-        backgroundColor: 'rgba(38, 70, 83, 0.3)',
+        backgroundColor: 'rgba(236, 244, 253, 0.5)',
         backdropFilter: 'blur(10px)',
         position: 'sticky',
         top: 0,
         zIndex: 2,
         marginBottom: '5px',
         '& .ql-picker': {
-          color: 'rgba(255, 255, 255, 0.9)',
+          color: '#0d47a1',
         },
         '& .ql-stroke': {
-          stroke: 'rgba(255, 255, 255, 0.9)',
+          stroke: '#0d47a1',
         },
         '& .ql-fill': {
-          fill: 'rgba(255, 255, 255, 0.9)',
+          fill: '#0d47a1',
         },
         '& .ql-picker-options': {
-          backgroundColor: 'rgba(38, 70, 83, 0.8)',
-          borderColor: 'rgba(255, 255, 255, 0.1)',
+          backgroundColor: 'rgba(236, 244, 253, 0.8)',
+          borderColor: 'rgba(13, 71, 161, 0.1)',
           backdropFilter: 'blur(10px)',
           zIndex: 3,
         },
         '& .ql-picker-item': {
-          color: 'rgba(255, 255, 255, 0.9)',
+          color: '#0d47a1',
         },
         '& .ql-picker-item.ql-selected': {
-          color: '#2A9D8F',
+          color: '#1976d2',
         },
         '& .ql-picker-item:hover': {
-          color: '#E9C46A',
+          color: '#42a5f5',
         },
         '& button:hover': {
-          color: '#E9C46A',
+          color: '#42a5f5',
           '& .ql-stroke': {
-            stroke: '#E9C46A',
+            stroke: '#42a5f5',
           },
           '& .ql-fill': {
-            fill: '#E9C46A',
+            fill: '#42a5f5',
           },
         },
       },
       '& .ql-editor': {
         minHeight: '200px',
         '& p': {
-          color: 'rgba(255, 255, 255, 0.9)',
+          color: '#0d47a1',
         },
         '&.ql-rtl': {
           direction: 'rtl',
@@ -134,6 +130,7 @@ const QuillEditor = ({ value, onChange }: QuillEditorProps) => {
         '& .ql-blank::before': {
           left: 'auto',
           right: '15px',
+          color: 'rgba(13, 71, 161, 0.5)',
         },
         '& img': {
           maxWidth: '100%',
@@ -146,9 +143,11 @@ const QuillEditor = ({ value, onChange }: QuillEditorProps) => {
       <ReactQuill
         ref={quillRef}
         theme="snow"
-        value={value}
+        value={value || ''}
         onChange={onChange}
         modules={modules}
+        placeholder="Write your blog content here..."
+        preserveWhitespace
       />
     </Box>
   );
