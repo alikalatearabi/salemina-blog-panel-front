@@ -9,6 +9,18 @@ interface Author {
   name: string;
 }
 
+interface Category {
+  _id: string;
+  name: string;
+  slug?: string;
+}
+
+interface Tag {
+  _id: string;
+  name: string;
+  slug?: string;
+}
+
 interface Post {
   _id: string;
   title: string;
@@ -20,8 +32,8 @@ interface Post {
   wordCount: number;
   readingTime: number;
   views: number;
-  categories: string[];
-  tags: string[];
+  categories: (string | Category)[];
+  tags: (string | Tag)[];
   createdAt: string;
   updatedAt: string;
   slug: string;
@@ -216,7 +228,7 @@ const BlogList = () => {
                       mb: 2,
                       fontFamily: '"Poppins", sans-serif'
                     }}>
-                      {post.authorId?.name && `By ${post.authorId.name} • `}
+                      {post.authorId && post.authorId.name && `By ${post.authorId.name} • `}
                       {formatDate(post.createdAt)} • {post.wordCount} words • {post.readingTime} min read
                     </Typography>
                     
@@ -224,8 +236,8 @@ const BlogList = () => {
                       <Stack direction="row" spacing={1} mb={2} flexWrap="wrap" gap={1}>
                         {post.categories.map((category) => (
                           <Chip 
-                            key={category} 
-                            label={category} 
+                            key={typeof category === 'object' ? category._id : category} 
+                            label={typeof category === 'object' ? category.name || category.slug || category._id : category} 
                             size="small"
                             sx={{ 
                               backgroundColor: 'rgba(25, 118, 210, 0.1)',
@@ -242,8 +254,8 @@ const BlogList = () => {
                       <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
                         {post.tags.map((tag) => (
                           <Chip 
-                            key={tag} 
-                            label={tag} 
+                            key={typeof tag === 'object' ? tag._id : tag} 
+                            label={typeof tag === 'object' ? tag.name || tag.slug || tag._id : tag} 
                             size="small"
                             sx={{ 
                               backgroundColor: 'rgba(66, 165, 245, 0.1)',
