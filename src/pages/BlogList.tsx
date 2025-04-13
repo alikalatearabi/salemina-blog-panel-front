@@ -236,8 +236,8 @@ const BlogList = () => {
                       <Stack direction="row" spacing={1} mb={2} flexWrap="wrap" gap={1}>
                         {post.categories.map((category) => (
                           <Chip 
-                            key={typeof category === 'object' ? category._id : category} 
-                            label={typeof category === 'object' ? category.name || category.slug || category._id : category} 
+                            key={typeof category === 'object' ? (category as Category)._id : category} 
+                            label={typeof category === 'object' ? (category as Category).name || (category as Category).slug || (category as Category)._id : category} 
                             size="small"
                             sx={{ 
                               backgroundColor: 'rgba(25, 118, 210, 0.1)',
@@ -254,8 +254,8 @@ const BlogList = () => {
                       <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
                         {post.tags.map((tag) => (
                           <Chip 
-                            key={typeof tag === 'object' ? tag._id : tag} 
-                            label={typeof tag === 'object' ? tag.name || tag.slug || tag._id : tag} 
+                            key={typeof tag === 'object' ? (tag as Tag)._id : tag} 
+                            label={typeof tag === 'object' ? (tag as Tag).name || (tag as Tag).slug || (tag as Tag)._id : tag} 
                             size="small"
                             sx={{ 
                               backgroundColor: 'rgba(66, 165, 245, 0.1)',
