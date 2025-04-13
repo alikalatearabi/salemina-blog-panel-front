@@ -2,7 +2,7 @@
  * API utility for making authenticated requests to the backend
  */
 
-const API_BASE_URL = 'http://blog-panel-backend:5000/api';
+const API_BASE_URL = 'http://194.147.222.179:5000/api';
 
 /**
  * Get the authentication token from localStorage
